@@ -1,28 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Text,
   SafeAreaView,
   Image,
-  TouchableOpacity,
   StyleSheet,
+  Dimensions,
 } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 
 import wateringImage from "../assets/watering.png";
 import { Button } from "../components/Button";
 import colors from "../styles/colors";
+import fonts from "../styles/fonts";
 
 export function Welcome() {
-  const [showImage, setShowImage] = useState(true);
-  console.log("log ->", showImage);
-
-  function image() {
-    if (showImage) {
-      return <Image style={styles.image} source={wateringImage} />;
-    } else {
-      return <Text>Imagem ocultada</Text>;
-    }
-  }
-
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>
@@ -31,7 +22,7 @@ export function Welcome() {
         forma fácil
       </Text>
 
-      <Image style={styles.image} source={wateringImage} />
+      <Image style={styles.image} source={wateringImage} resizeMode="contain" />
 
       <Text style={styles.body}>
         Não esqueça mais de regar suas {"\n"}
@@ -46,7 +37,7 @@ export function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
   },
 
@@ -56,16 +47,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: colors.heading,
     marginTop: 80,
+    fontFamily: fonts.heading,
+    lineHeight: 34,
   },
 
   image: {
-    height: 285,
-    width: 292,
+    height: Dimensions.get("window").width * 0.7,
   },
 
   body: {
     color: colors.body_dark,
-    fontSize: 17,
+    fontSize: 19,
     textAlign: "center",
+    fontFamily: fonts.text,
   },
 });

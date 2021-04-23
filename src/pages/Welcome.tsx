@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
-import { Entypo } from "@expo/vector-icons";
+
+import { UserIdentification } from "./userIdentification";
 
 import wateringImage from "../assets/watering.png";
 import { Button } from "../components/Button";

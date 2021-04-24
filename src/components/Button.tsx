@@ -5,6 +5,9 @@ import {
   StyleSheet,
   TouchableOpacityProps,
 } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
 import colors from "../styles/colors";
 
 interface ButtonProps extends TouchableOpacityProps {

@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import {
   Text,
@@ -5,16 +6,24 @@ import {
   Image,
   StyleSheet,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 
-import { UserIdentification } from "./userIdentification";
+import {IdentificationProps} from '../../types'
 
 import wateringImage from "../assets/watering.png";
-import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
+
 export function Welcome() {
+
+  const navigation = useNavigation()
+
+  function handleStart() {
+    navigation.navigate('UserIdentification')
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>
@@ -30,7 +39,12 @@ export function Welcome() {
         plantas. Nós cuidamos de lembrar você {"\n"}
         sempre que precisar.
       </Text>
-      <Button title=">" />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleStart}
+      >
+        <Text style={styles.buttonText}>></Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -61,5 +75,19 @@ const styles = StyleSheet.create({
     fontSize: 19,
     textAlign: "center",
     fontFamily: fonts.text,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.green,
+    borderRadius: 15,
+    height: 66,
+    width: 66,
+    marginBottom: 20,
+  },
+
+  buttonText: {
+    color: "white",
+    fontSize: 30,
   },
 });

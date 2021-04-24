@@ -14,7 +14,7 @@ export function Confirmation() {
           Agora vamos começar a cuidar das suas {"\n"} plantinhas com muito
           cuidado.
         </Text>
-        <MainButton text="Começar" />
+        <MainButton title="Começar" />
       </View>
     </SafeAreaView>
   );

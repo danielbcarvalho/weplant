@@ -15,37 +15,28 @@ import { EnvironmentButton } from "../components/EnvironmentButton";
 import api from "../services/api";
 import { PlantCardPrimary } from "../components/PlantCardPrimary";
 import { Load } from "../components/Load";
-import { DarkTheme } from "@react-navigation/native";
+import { DarkTheme, useNavigation } from "@react-navigation/native";
+import { PlantSave } from "./PlantSave";
+import { PlantProps } from "../libs/storage";
 
 interface EnvironmentProps {
   key: string;
   title: string;
 }
 
-interface PlantCardProps {
-  id: number;
-  name: string;
-  about: string;
-  water_tips: string;
-  photo: string;
-  environments: [string];
-  frequency: {
-    times: number;
-    repeat_every: string;
-  };
-}
-
 export function PlantSelect() {
   const [environments, setEnvironments] = useState<EnvironmentProps[]>([]);
-  const [plantCards, setPlantCards] = useState<PlantCardProps[]>([]);
-  const [filteredPlantCards, setFilteredPlantCards] = useState<
-    PlantCardProps[]
-  >([]);
+  const [plantCards, setPlantCards] = useState<PlantProps[]>([]);
+  const [filteredPlantCards, setFilteredPlantCards] = useState<PlantProps[]>(
+    []
+  );
   const [environmentSelected, setEnvironmentSelected] = useState("all");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
   const [loadedAll, setLoadedAll] = useState(false);
+
+  const navigation = useNavigation();
 
   function handleEnvironmentSelected(environment: string) {
     setEnvironmentSelected(environment);
@@ -83,6 +74,10 @@ export function PlantSelect() {
     setLoadingMore(true);
     setPage((oldValue) => oldValue + 1);
     fetchPlants();
+  }
+
+  function handlePlantSelect(plant: PlantProps) {
+    navigation.navigate("PlantSave", { plant: plant });
   }
 
   //useEffect -> é carregado antes da tela ser exibida
@@ -130,7 +125,6 @@ export function PlantSelect() {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.environmentList}
-          //ListFooterComponent={<View />}
           ListHeaderComponentStyle={{ marginRight: 32 }}
         />
       </View>
@@ -142,13 +136,12 @@ export function PlantSelect() {
             return (
               <PlantCardPrimary
                 data={item}
-                //onPress={() => setIsActive(true)}
+                onPress={() => handlePlantSelect(item)}
                 //active={isActive}
               />
             );
           }}
           numColumns={2}
-          // contentContainerStyle={styles.plantCardsFlatList}
           showsVerticalScrollIndicator={false}
           onEndReachedThreshold={0.1} //10% do final da tela
           onEndReached={({ distanceFromEnd }) =>

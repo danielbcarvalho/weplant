@@ -24,11 +24,11 @@ export function MainButton({ title, ...rest }: ButtonProps) {
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 50,
+    marginTop: 30,
     backgroundColor: colors.green,
     borderRadius: 15,
     paddingVertical: 15,
-    paddingHorizontal: 60,
+    paddingHorizontal: 40,
   },
   text: {
     fontSize: 24,

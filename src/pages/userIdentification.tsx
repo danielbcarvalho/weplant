@@ -39,10 +39,20 @@ export function UserIdentification() {
 
   async function handleSubmit() {
     if (!input) return Alert.alert("Me diz como chamar você 😥");
+    try {
+      await AsyncStorage.setItem("@weplant:user", input);
+    } catch (e) {
+      Alert.alert("Não foi possível	salvar o nome");
+    }
 
-    await AsyncStorage.setItem("@weplant:user", input);
-
-    navigation.navigate("Confirmation");
+    navigation.navigate("Confirmation", {
+      title: "Prontinho",
+      subtitle:
+        "Agora vamos começar a cuidar das suas plantinhas com muito cuidado.",
+      buttonTitle: "Começar",
+      icon: "smile",
+      nextScreen: "PlantSelect",
+    });
   }
   return (
     <SafeAreaView style={styles.container}>

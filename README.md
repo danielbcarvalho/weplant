@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img width="700" src="./screenshots/collageCanva.jpg" alt="We Plant App" />
+  <img width="900" src="./screenshots/collageCanva.jpg" alt="We Plant App" />
 
 &#xa0;
 

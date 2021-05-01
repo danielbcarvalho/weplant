@@ -19,13 +19,15 @@ export default function App() {
   });
 
   useEffect(() => {
-    const subscription = Notifications.addNotificationReceivedListener(
-      async (notification) => {
-        const data = notification.request.content.data.plant as PlantProps;
-        console.log("log ->", data);
-      }
-    );
-    return () => subscription.remove();
+    // const subscription = Notifications.addNotificationReceivedListener(
+    //   async (notification) => {
+    //     const data = notification.request.content.data.plant as PlantProps;
+    //     console.log("log ->", data);
+    //   }
+    // );
+    // return () => subscription.remove();
+    Notifications.cancelAllScheduledNotificationsAsync();
+    console.log("log -> sers");
   }, []);
 
   if (!fontsLoaded) {

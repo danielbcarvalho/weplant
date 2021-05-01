@@ -32,7 +32,6 @@ export function UserIdentification() {
   }
 
   function handleInputBlur() {
-    console.log("log -> bluer");
     setFocused(false);
     setFilled(!!input);
   }
